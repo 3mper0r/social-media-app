@@ -13,15 +13,16 @@ const CreateAccount = () => {
 
     const navigate = useNavigate()
 
+    const validEmail = /\S+@\S+\.\S+/.test(email)
+
     const handleSubmit = (e: any) => {
         e.preventDefault()
         const newUser = {name, lastName, email, password, country}
         axios.post(USER_URL,newUser)
         navigate('/feed')
     }
-
     
-    const checkForm = (name != "") && (lastName != "") && (email != "") && (password != "") && (country != "")
+    const checkForm = (name != "") && (lastName != "") && validEmail && (password.length > 8) && (country != "")
     return (
         <>
             <form>

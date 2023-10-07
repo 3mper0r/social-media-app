@@ -1,33 +1,33 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { MouseEvent, useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
+import {users} from '../../db/db.json'
 
-const Login = () => {
+const Login = () => {   
+
+    const listOfEmail = users.map(userEmail => userEmail.email)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState<null | string>(null)
 
     const navigate = useNavigate()
     
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e:MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
         e.preventDefault()
-        navigate('/feed')
+        if(listOfEmail.includes(email)) navigate('/feed')
+        else setError('Email or Password are invalid')
     }
-
-    
-    const checkForm = (email != "") && (password != "")
-
     return (
-        <form action="">
-            <label htmlFor="email">Email:
-                <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} required/>
-            </label>
-            <label htmlFor="password">Password:
-                <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
-            </label>
-            <button disabled={!checkForm} onClick={handleSubmit}>Log In</button>
+        <form className="bg-white grid p-5 rounded-lg"> 
+            <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Enter your email" className="mb-3 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 h-14 placeholder:text-violet-400"/>
+            <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} placeholder="Password" className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 h-14 placeholder:text-violet-400"/>
+            
+            <button className="text-white text-lg bg-blue m-3 p-3 rounded-lg disabled:opacity-30" onClick={handleSubmit}>Log In</button>
+            {error && <span className="text-red-500 text-xl">{error}</span>}          
+            <span className="outline outline-1 outline-neutral-200 mt-5"></span>
+            <button className="text-white text-lg w-2/3 place-self-center bg-green m-7 p-3 rounded-lg"><Link to="/create">Create new account</Link></button>
         </form>
     )
-
 }
 
 export default Login

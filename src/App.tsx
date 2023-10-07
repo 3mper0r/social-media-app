@@ -15,11 +15,11 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Welcome/>} />
+        <Route index element={<Welcome/>} />
         <Route path="/create" element={<CreateAccount/>} />
         <Route path="/login" element={<Login/>}/>
-        <Route path="books" element={<Feed />}/>
         <Route element={<RequireAuth/>}> 
+          <Route path="books" element={<Feed />}/>
           <Route path="books" element={<Profile />}/>
         </Route>
         <Route path="/feed" element={<PostCard/>} />
