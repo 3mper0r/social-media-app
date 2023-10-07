@@ -1,0 +1,51 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+form > label {
+  display: grid;
+}
+img {
+  width: 30%;
+}
+button {
+  padding: 0.8rem;
+  border-radius: 16px;
+  border: transparent;
+  background-color: rgb(101, 221, 179);
+  color: black;
+  pointer-events: han;
+  cursor: pointer;
+}
+button:hover {
+  outline: 1px solid rgb(140, 127, 255);
+  
+}
+
+:disabled {
+  background-color: rgb(230, 224, 224);
+  pointer-events: none;
+}
+
+.postcard {
+  display: grid;
+  border: 1px solid grey;
+}
+
+.news-feed {
+  display: inline;
+}
+
+.my-profile {
+  display: inline;
+  margin-left: 5rem;
+  cursor: pointer;
+}
