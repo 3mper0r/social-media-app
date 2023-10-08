@@ -1,8 +1,8 @@
-import axios from "axios"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { api } from "../api/api"
 
-const USER_URL = 'http://localhost:3000/profile'
+const USER_URL = '/users'
 
 const CreateAccount = () => {
     const [name, setName] = useState('')
@@ -15,54 +15,56 @@ const CreateAccount = () => {
 
     const validEmail = /\S+@\S+\.\S+/.test(email)
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const newUser = {name, lastName, email, password, country}
-        axios.post(USER_URL,newUser)
+        await api.post(USER_URL, newUser)
         navigate('/feed')
     }
     
     const checkForm = (name != "") && (lastName != "") && validEmail && (password.length > 8) && (country != "")
     return (
         <>
-            <form>
-                <label htmlFor="firstName">Firstname:
-                    <input 
-                        type="text" 
-                        name="firstName" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        required
-                    />
-                </label>
-                <label htmlFor="lastName">Lastname:
-                    <input 
-                        type="text" 
-                        name="lastName" 
-                        value={lastName} 
-                        onChange={(e) => setLastName(e.target.value)} 
-                        required
-                    />
-                </label>
-                <label htmlFor="email">Email:
-                    <input 
-                        type="email" 
-                        name="email" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} 
-                    />
-                </label>
-                <label htmlFor="password">Password:
-                    <input 
-                        type="password" 
-                        name="password" 
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} 
-                        required
-                         />
-                </label>
-                <label htmlFor="country">Country:
-                    <select name="" id="" value={country} onChange={(e) => setCountry(e.target.value)}>
+            <section className="grid place-items-center p-9">
+            <h1 className="text-3xl mb-6">Sign Up</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col justify-center space-y-4 w-1/3">
+                <input 
+                    type="text" 
+                    id="firstName" 
+                    value={name} 
+                    onChange={(e) => setName(e.target.value)} 
+                    required
+                    placeholder="Firstname"
+                    className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md sm:text-sm focus:ring-1 h-14 placeholder:text-violet-400"
+                />          
+                <input 
+                    type="text" 
+                    id="lastName" 
+                    value={lastName} 
+                    onChange={(e) => setLastName(e.target.value)} 
+                    required
+                    placeholder="Lastname"
+                    className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md sm:text-sm focus:ring-1 h-14 placeholder:text-violet-400"
+                />
+                <input 
+                    type="email" 
+                    id="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} 
+                    placeholder="Email"
+                    className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 h-14 placeholder:text-violet-400"
+                />
+                <input 
+                    type="password" 
+                    id="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required
+                    placeholder="Password"
+                    className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 h-14 placeholder:text-violet-400"
+                />
+                <label className="grid" htmlFor="country">Country:
+                    <select id="country" value={country} onChange={(e) => setCountry(e.target.value)} className="active:text-xl bg-transparent px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md sm:text-sm focus:ring-1 h-14">
                         <option value=""></option>
                         <option value="Germany">Germany</option>
                         <option value="Kosovo">Kosovo</option>
@@ -71,8 +73,9 @@ const CreateAccount = () => {
                         <option value="USA">USA</option>
                     </select>
                 </label>
-                <button disabled={!checkForm} onClick={handleSubmit}>Create Account</button>
+                <button className="text-white text-lg w-2/3 place-self-center bg-green m-7 p-3 rounded-lg disabled:opacity-30" type="submit" disabled={!checkForm} >Create Account</button>
             </form>
+            </section>
         </>
     )
     

@@ -8,10 +8,10 @@ const AuthContext = createContext({})
 
 
 export const AuthProvider = ({children}: ChildrenProps) => {
-    const [name, setName] = useState({})
+    const [auth, setAuth] = useState({})
 
     return (
-        <AuthContext.Provider value={{name, setName }} >
+        <AuthContext.Provider value={{auth, setAuth }} >
             {children}
         </AuthContext.Provider>
     )

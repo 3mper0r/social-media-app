@@ -1,10 +1,7 @@
-
-
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Welcome from './components/Welcome'
 import CreateAccount from './pages/CreateAccount'
-import PostCard from './components/PostCard'
 import Login from './pages/Login'
 import RequireAuth from './components/RequireAuth'
 import Feed from './components/Feed'
@@ -16,13 +13,12 @@ function App() {
     <>
       <Routes>
         <Route index element={<Welcome/>} />
-        <Route path="/create" element={<CreateAccount/>} />
         <Route path="/login" element={<Login/>}/>
+        <Route path="/create" element={<CreateAccount/>} />
+        <Route path="/feed" element={<Feed />}/>
         <Route element={<RequireAuth/>}> 
-          <Route path="books" element={<Feed />}/>
-          <Route path="books" element={<Profile />}/>
+          <Route path="/profile" element={<Profile />}/>
         </Route>
-        <Route path="/feed" element={<PostCard/>} />
       </Routes>
        
     </>

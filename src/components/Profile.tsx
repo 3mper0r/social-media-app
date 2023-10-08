@@ -10,12 +10,12 @@ interface User {
     country: string;
 }
 
-const Profile = ({name}: User) => {
+const Profile = () => {
     //const [user, setUser] = useState('')
     const { auth }:any = useAuth()
     return (
         <>
-            <h2 className='my-profile'>{name}</h2>
+            <h2 className='my-profile'>{auth.name}</h2>
             
             <span></span>
             <span></span>
