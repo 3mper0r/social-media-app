@@ -7,17 +7,17 @@ import RequireAuth from './components/RequireAuth'
 import Feed from './components/Feed'
 import Profile from './components/Profile'
 
-function App() {
- 
+function App() {  
+
   return (
     <>
       <Routes>
         <Route index element={<Welcome/>} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/create" element={<CreateAccount/>} />
-        <Route path="/feed" element={<Feed />}/>
         <Route element={<RequireAuth/>}> 
-          <Route path="/profile" element={<Profile />}/>
+          <Route path="/feed" element={<Feed />}/>
+          <Route path="/myprofile" element={<Profile />}/>
         </Route>
       </Routes>
        

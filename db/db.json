@@ -3,15 +3,17 @@
     {
       "id": 1,
       "name": "Elidon",
-      "lastname": "Morina",
+      "lastName": "Morina",
       "email": "elidonmorina@gmail.com",
+      "password": "admin",
       "country": "Kosovo"
     },
     {
       "id": 2,
       "name": "Yusuf",
-      "lastname": "Iskenderoglu",
+      "lastName": "Iskenderoglu",
       "email": "yusufiskenderoglu@gmail.com",
+      "password": "admin",
       "country": "Germany"
     },
     {
@@ -21,6 +23,27 @@
       "password": "asdasdasd",
       "country": "Switzerland",
       "id": 3
+    },
+    {
+      "name": "user4",
+      "lastName": "user4",
+      "email": "user4@gmail.com",
+      "password": "asdasdasd",
+      "country": "Turkey",
+      "id": 4
+    },
+    {
+      "name": "testuser",
+      "lastName": "testtss",
+      "email": "elidasd@gmail.com",
+      "password": "asdasdasd",
+      "country": "Germany",
+      "id": 5
+    },
+    {
+      "email": "elidonmorina@gmail.com",
+      "password": "admin",
+      "id": 6
     }
   ],
   "posts": [

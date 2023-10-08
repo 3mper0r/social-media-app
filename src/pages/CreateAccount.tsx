@@ -78,7 +78,6 @@ const CreateAccount = () => {
             </section>
         </>
     )
-    
 }
 
 export default CreateAccount

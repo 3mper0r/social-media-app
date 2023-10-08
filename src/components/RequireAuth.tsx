@@ -1,20 +1,16 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
-//import Cookies from "js-cookie"
 import {users} from '../../db/db.json'
-
 
 const RequireAuth = () => {
    
-    
-    //let username = name
     const { auth }:any = useAuth()
-    const us = users.forEach(u => u.name)
-    console.log('name', us);
+    // const us = users.forEach(u => u.name)
+    // console.log('name', us);
     const location = useLocation()
 
     return (
-        auth?.name
+        auth?.name || auth?.password
             ? <Outlet/>
             : <Navigate to="/login" state={{from: location}} replace />
     )

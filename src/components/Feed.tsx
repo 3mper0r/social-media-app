@@ -1,28 +1,20 @@
-import { useState } from "react"
-import Profile from "./Profile"
 import useAuth from "../hooks/useAuth"
 import PostCard from "./PostCard";
+import useDarkMode from "../hooks/useDarkMode";
+import { Link } from "react-router-dom";
 
-interface User{
-    
-    name: string;
-    lastname: string;
-    email: string;
-    country: string;         
-   
-}
-const Feed = ({name}: User) => {
+const Feed = () => {
 
     const {auth}: any = useAuth()
-    // const [isLooged, setIsLoggedIn] = useState(null)
-    const logedIn = <h1>`Hello user ${name}`</h1>
-    const notLoggedIn = <span>You must login first</span>
+    
+    const [isDarkMode, toggleDarkMode] = useDarkMode()
     return (
         <>
-            <nav className='news-feed'>See what's new today!</nav>
-            {auth ? logedIn : notLoggedIn}
-            <Profile/>
-            <PostCard/>
+            <nav className='grid bg-blue text-white p-4 text-center'>See what's new today!
+                <button onClick={toggleDarkMode}><i className={isDarkMode ? 'text-amber-400 fas fa-moon' : 'text-white fas fa-moon'}></i></button>
+                <button><Link to="/myprofile">My Profile {auth?.email}</Link></button> 
+            </nav>
+            <PostCard/> 
         </>
     )
         

@@ -1,20 +1,30 @@
 import { MouseEvent, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import {users} from '../../db/db.json'
+import useAuth from "../hooks/useAuth"
 
 const Login = () => {   
 
     const listOfEmail = users.map(userEmail => userEmail.email)
+    const passwordMatch = users.map(userPassword => userPassword.password)
+    
+    const {setAuth}: any = useAuth()
 
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState<null | string>(null)
-
+    
     const navigate = useNavigate()
+
+    //const checkLogin = () => {listOfEmail.includes(email) && passwordMatch.find(pw => pw === password)}
     
     const handleSubmit = (e:MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
         e.preventDefault()
-        if(listOfEmail.includes(email)) navigate('/feed')
+        if(listOfEmail.includes(email) && passwordMatch.find(pw => pw === password))  {
+            setAuth({email, password})
+            navigate('/feed')
+        }
         else setError('Email or Password are invalid')
     }
     return (
