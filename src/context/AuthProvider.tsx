@@ -8,15 +8,15 @@ const AuthContext = createContext({})
 
 
 export const AuthProvider = ({children}: ChildrenProps) => {
-    const [auth, setAuth] = useState({name: '', email: '', country: ''})
+    const [auth, setAuth] = useState({name: '', country:''})
     // const [user, setUser] = useState('')
-    // const [name, setName] = useState('')
-    // const [lastName, setLastName] = useState('')
+    const [name, setName] = useState(auth.name)
+    const [lastName, setLastName] = useState('')
     // const [email, setEmail] = useState('')
-    // const [country, setCountry] = useState('')
+    const [country, setCountry] = useState(auth.country)
 
     return (
-        <AuthContext.Provider value={{auth, setAuth}} >
+        <AuthContext.Provider value={{auth, setAuth, name, setName, lastName, country, setLastName, setCountry}} >
             {children}
         </AuthContext.Provider>
     )

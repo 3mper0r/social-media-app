@@ -6,7 +6,10 @@
       "lastName": "Morina",
       "email": "elidonmorina@gmail.com",
       "password": "admin",
-      "country": "Kosovo"
+      "country": "Kosovo",
+      "following" : {
+        "followingUsers": ["Max", "John", "Yusuf"]
+      }
     },
     {
       "id": 2,
