@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
+import {users} from '../../db/db.json'
 
 interface ChildrenProps {
     children: ReactNode
@@ -8,15 +9,16 @@ const AuthContext = createContext({})
 
 
 export const AuthProvider = ({children}: ChildrenProps) => {
-    const [auth, setAuth] = useState({name: '', country:''})
-    // const [user, setUser] = useState('')
-    const [name, setName] = useState(auth.name)
-    const [lastName, setLastName] = useState('')
-    // const [email, setEmail] = useState('')
-    const [country, setCountry] = useState(auth.country)
 
+    const [auth, setAuth] = useState({email:''})
+
+    const usersEmail = auth.email
+
+    const usersList = users.map(user => user)
+    const userName = usersList.find(email => email.email === usersEmail)
+   
     return (
-        <AuthContext.Provider value={{auth, setAuth, name, setName, lastName, country, setLastName, setCountry}} >
+        <AuthContext.Provider value={{auth, setAuth, usersList, userName}} >
             {children}
         </AuthContext.Provider>
     )

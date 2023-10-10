@@ -1,14 +1,8 @@
-import { useState } from "react";
 import useAuth from "../hooks/useAuth";
-import {users} from '../../db/db.json'
 
 const Profile = () => {  
 
-    const {auth}: any = useAuth()  
-    const usersEmail = auth.email
-
-    const usersList = users.map(user => user)
-    const userName = usersList.find(email => email.email === usersEmail)
+    const {auth, userName}: any = useAuth()  
     
     return (
         <aside className='bg-blue grid-cols-1 min-h-screen'>

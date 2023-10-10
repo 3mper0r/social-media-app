@@ -25,7 +25,10 @@
       "email": "gazi@gmail.com",
       "password": "asdasdasd",
       "country": "Switzerland",
-      "id": 3
+      "id": 3,
+      "following" : {
+        "followingUsers": ["Gazi's friend1", "Gazi's friend2", "Gazi's friend3"]
+      }
     },
     {
       "name": "user4",
